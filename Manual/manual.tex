@@ -1,0 +1,316 @@
+\documentclass[11pt, fullpage, a4paper]{article}
+%%%Packages 
+\usepackage{hyperref} % voor website link
+
+\usepackage{apacite}  % apacite
+\usepackage{amssymb, amsmath, amsthm} % symbols and math
+\usepackage{graphicx, latexsym}
+
+\usepackage{listings} % voor R code
+
+\usepackage{multirow} % om meerdere rijen in een tabel te bevatten
+\usepackage{subfig} % om meerdere figuren in 1 figuur te doen
+\usepackage{bibentry} % om referentie in text te kunnen gebruiken
+\usepackage{cancel} % om door te kunnen strepen
+
+
+
+\newcommand{\Hmi}{$H_{m}^{i} $ }
+\newcommand{\Heeni}{\(H_{1}^{i}\) }
+\newcommand{\Htweei}{$H_{2}^{i} $ }
+\newcommand{\Hdriei}{$H_{3}^{i} $ }
+\newcommand{\Hm}{$H_{m} $ }
+\newcommand{\Heen}{\(H_{1}\) }
+\newcommand{\Htwee}{$H_{2} $ }
+\newcommand{\Hdrie}{$H_{3} $ }
+\newcommand{\Hu}{$H_{u}$ }
+\newcommand{\Hn}{$H_{m'} $ }
+\newcommand{\Hmc}{$H_{\cancel{m}} $ }
+\newcommand{\Heenci}{$H_{\cancel{1}}^{i} $ }
+\newcommand{\Htweeci}{$H_{-2}^{i} $ }
+\newcommand{\Hdrieci}{$H_{-3}^{i} $ }
+\newcommand{\Hui}{$H_{u}^{i }$ }
+\newcommand{\Hni}{$H_{m'}^{i} $ }
+\newcommand{\Hmci}{$H_{\cancel{m}}^{i} $ }
+\newcommand{\BFmni}{$BF_{mm'}^{i} $ }
+\newcommand{\BFmci}{$BF_{m\cancel{m}}^{i} $ }
+\newcommand{\BFmui}{$BF_{mu}^{i} $ }
+\newcommand{\gBFmni}{$\text{gP-BF}_{mm'} $ }
+\newcommand{\gBFmci}{$\text{gP-BF}_{m\cancel{m}} $ }
+\newcommand{\gBFmui}{$\text{gP-BF}_{mu} $ }
+\newcommand{\xij}{ $ x_{j}^{i} $ }
+\newcommand{\piij}{ $ \pi_{j}^{i} $ }
+\newcommand{\zedintext}{\citeauthor{zedelius11} \citeyear{zedelius11}}
+
+\title{Manual OneForAll to analyze individual hypotheses and evaluate whether individuals are homogeneous}
+
+\author{Fayette Klaassen}
+
+\date{\today}
+
+
+
+\begin{document}
+	
+	\maketitle	
+
+%This manual contains three parts. 
+%Section~\ref{sec:1} describes how the Shiny Application `OneForAll' can be downloaded, that is developed alongside the paper \textit{All for One or Some for All?  Evaluating Informative Hypotheses for Multiple $N=1$ Studies} \cite{klaassenBSES}.
+%The requirements for running this program are listed, and it is explained how the program can be executed.
+%The program itself consists of two parts.
+%The first part of the program, where a Study design analysis can be executed, is described in Section~\ref{sec:3}.
+%Section~\ref{sec:2} contains the manual for the second part of the program, where own data can be analyzed.
+This manual describes how the Shiny Application `OneForAll' can be used.
+A stable link to the app can be found on \href{http://github.com/fayetteklaassen/OneForAll}{http://github.com/fayetteklaassen/OneForAll}.
+The application can be run on any computer with an internet connection.
+By using the application, you agree to the Terms of Usage, as displayed on the starting screen of the app.
+This application allows you to evaluate informative hypotheses for multiple N=1 studies of your own data.
+If you want to execute a simulation study (like presented in the paper), please contact the author at klaassen.fayette@gmail.com for R code or a Shiny application you can run locally on your own computer.
+	
+%	\section{Download, install and start OneForAll}
+%	\label{sec:1}
+%	This section only describes how to install the software on a Windows computer. 
+%	It has not been tested on other operating systems.
+%	\subsection{Download files}
+%	All relevant files for the application can be downloaded on
+%	
+%	\noindent \href{http://github.com/fayetteklaassen/OneForAll}{http://github.com/fayetteklaassen/OneForAll}
+%	This repository contains a read-me file.
+%	\subsection{Download R}
+%	In order to be able to run the code, a version of R should be installed on your computer.
+%	This code was developed in R 3.3.1, and it is recommended to use this or a newer version of R to run this code.
+%	Using version 3.3.1 ensures that the same version of functions is used.
+%	How to install a current version of R can be found on \href{https://cran.r-project.org/bin/windows/base/}{the CRAN website}.
+%	Optionally R Studio can be installed, which is a more user-friendly interface of R and can be downloaded at the \href{https://www.rstudio.com/products/rstudio/download3/}{site of R Studio}.
+%	\subsection{Download Rtools}
+%	In order to run the application and compile the code, the package Rtools should be installed, which can be downloaded \href{https://cran.r-project.org/bin/windows/Rtools/}{here}.
+%	\subsection{Install packages}
+%	The final step before the Shiny program can be used, is to install the required packages. The repository contains a file \textit{Rcode/installpackages.R} that, when run, installs all required packages.
+%	
+%	\textit{R} Within the program R, you can open the file \textit{installpackages.R}, select all lines of code and press 'Run line or selection', the third button on the top.
+%	\textit{R Studio} In R Studio, you can open the file \textit{installpackages.R} and press Ctrl+Shift+S, or select all lines of code and press Ctrl+Enter.
+%	\subsection{Run the App}
+%	To run the application, you should first open R or R Studio and you run the code \begin{lstlisting}[language=R]
+%		library("shiny")
+%		\end{lstlisting}
+%		\begin{lstlisting}[language=R]
+%		runApp("<directory>/OneForAll")	\end{lstlisting}
+%		where 
+%\textit{ $<$directory$>$} should be replaced by the directory of the folder OneForAll.
+%Running this code will open the application in a new screen.
+%The first time you open the program, you should wait about a minute for the code to compile.
+%When loaded, the screen should look like Figure~\ref{fig:startscreen}.
+%
+%	The application has two separate parts that can be accessed through the top menu: \textit{Simulate and plot}, which is discussed in Section~\ref{sec:3} and \textit{Analyze own data}, which will be discussed in Section~\ref{sec:2}.
+%	
+%	\newpage
+%		
+%		\section{Study design analysis}
+%		\label{sec:3}
+%		This section provides detailed explanation on how to execute a study design analysis.
+%		In the application, two tabs are visible: the Input section, where values for all variable components can be chosen, and the Plot section, where the results can be inspected visually.
+%		The Input consists of three steps.
+%		\subsection{Input - Step 1: Number of conditions and hypotheses}
+%		\label{subsec:constraints}
+%		Here you can specify the number of conditions you are considering from the drop down menu.
+%		Furthermore, you can choose how you want to specify your hypotheses. 
+%		Three options are available.
+%		Below examples are provided on how to use this option, using the hypotheses specified in Table~\ref{tab:hypotheses}.
+%			\begin{table}[b]
+%				\caption{Possible specifications for 6 hypotheses.}
+%				\label{tab:hypotheses}
+%				\begin{tabular}{l l l l l }
+%					Hypothesis & & Using $>$ & Using $R$ & Default \\
+%					$H_{1}^{i}: \pi_{1}^{i} >  \pi_{2}^{i} >  \pi_{3}^{i} >  \pi_{4}^{i}>  \pi_{5}^{i} >  \pi_{6}^{i}$ && $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+%					
+%					$H_{2}^{i}: \pi_{1}^{i} + \pi_{2}^{i} >  \pi_{3}^{i} + \pi_{4}^{i}>  \pi_{5}^{i} + \pi_{6}^{i}$ && $\checkmark$ &$\checkmark$ &$\checkmark$\\
+%					
+%					$H_{3}^{i}: \pi_{1}^{i} + \pi_{2}^{i} + \pi_{3}^{i} > \pi_{4}^{i} + \pi_{5}^{i} + \pi_{6}^{i}$  && x &$\checkmark$ &x\\
+%					
+%					$H_{4}^{i}:  \pi_{1}^{i} >  \pi_{2}^{i} >  \pi_{3}^{i} >  \pi_{4}^{i}>  \pi_{6}^{i} >  \pi_{5}^{i}$  && $\checkmark$ &$\checkmark$ &$\checkmark$\\
+%					
+%					$H_{5}^{i}:  \pi_{1}^{i} >  \pi_{3}^{i} >  \pi_{2}^{i} >  \pi_{4}^{i}>  \pi_{6}^{i} >  \pi_{5}^{i}$  && $\checkmark$ &$\checkmark$ &x\\	
+%					
+%				\end{tabular}
+%			\end{table}
+%
+%	\begin{itemize}
+%		\item \textit{Option 1: Using $>$. } This option requires that for each hypothesis you want to consider, you specify each constraint using $>$ and separate constraints with a comma.
+%		Each hypothesis is specified on its own line.
+%		The parameters of interest are the success probabilities in the experimental conditions.
+%		They can be referred to by a number that corresponds to the column number of that condition in the data.
+%		Two types of constraints can be specified: a constraint between two parameters (e.g.``1$>$2"), or a constraint between two combinations of two parameters, separated by a $'+'$ (e.g.``1+2$>$3+4"). 
+%		Note that one parameter cannot be on both sides of the constraint (e.g. "1+2 $>$ 2+3" is not allowed).
+%		Figure~\ref{fig:ineq} specifies all hypotheses from Table~\ref{tab:hypotheses} that can be specified using this option.
+%		\item \textit{Option 2: Using constraint matrix.} This options allows the user to specify a constraint matrix for each hypothesis.
+%		For more details on a constraint matrix, see \citeauthor{mulder12} \citeyear{mulder12} for example. 
+%		The first line should specify how many hypotheses $M$ are specified, and each hypothesis $m = 1,...,M$ should start with a line specifying the number of constraints (rows) in $R_{m}$.
+%		Each constraint matrix contains $J+1$ columns, where $J$ is the number of conditions. 
+%		The first $J$ columns specify the constraint matrix, and the last additional column should contain the contrast vector $r$.
+%		With this option more complex hypotheses can be specified.
+%		Figure~\ref{fig:R} shows how $H_{1}^{i}$ and $H_{3}^{i}$ could be specified using $R$, Option 2. 
+%		Option 2 is more flexible than Option 1, but as can be seen in Figures~\ref{fig:ineq} and \ref{fig:R}, Option 1 is more straightforward to specify, if the hypotheses allow for this option.
+%		\item \textit{Option 3: Default.} This option is only available for an even number of conditions, and specifies automatically three hypotheses: $H_{1}^{i}: \pi_{1}^{i} > \pi_{2}^{i} > ... > \pi_{J}^{i}$, a full ordered hypothesis, where $J\geq4$, $H_{2}^{i}: \pi_{1}^{i} > \pi_{2}^{i} > ... > \pi_{J}^{i}> \pi_{J-1}^{i}$, that only deviates from $H_{1}^{i}$ because the last two parameters are reversed in the ordering, and finally $H_{3}^{i}:\pi_{1}^{i}+ \pi_{2}^{i} > ... > \pi_{J-1}^{i} +\pi_{J}^{i}$, a full ordered hypothesis of each adjoining pair of parameters.
+%	\end{itemize}
+%	
+%
+%		
+%	After all hypotheses of interest are specified, the hypotheses can be submitted and checked by pressing the button \textit{Submit constraints for checking}.
+%	This will result in a text message below the button specifying the number of hypotheses and showing the hypotheses.
+%	The program is only able to reprint relatively simple hypotheses in full form (Option 1 and Option 3), but is always accurate in referring the number of formulated hypotheses, and is therefore valuable to consult even if Option 2 is applied.
+%	The user is asked to check the hypothesis themselves if more complicated hypotheses are formulated under Option 2.
+%	If any syntactic mistakes are made (wrong number of columns, invalid characters) an error message will appear.
+%	
+%	\subsection{Optional choices}
+%	After submitting the hypotheses of interest, some optional choices can be selected: the Bayes factors to be computed, the P-populations to simulate, and the proportion for the mixture populations.
+%	
+%	\textit{Step 1a: Bayes factors}
+%	Here all possible Bayes factors are presented.
+%	A $0$ after a number specifies the Bayes factor against the unconstrained hypothesis - \textit{not} against the null hypothesis.
+%	Twice the same number indicates the Bayes factor of that hypothesis against its complement.
+%	By default, only Bayes factors for the specified hypotheses against the unconstrained hypothesis are selected.
+%	Note that selecting more Bayes factors increases computational time, so only choose those Bayes factors of interest.
+%	
+%	\textit{Step 1b: P-populations}
+%	Here all possible P-populations are presented.
+%	Pop0 denotes the unconstrained P-population, and is by default not selected.
+%	Pop$m$c denotes the complement of hypothesis $m$.
+%	
+%	\textit{Step 1c: Mixture proportion}
+%	Here it is possible to choose whether a mixture population should be created.
+%	If the box is checked, for all models $m$ where both Pop$m$ and Pop$m$c are selected as populations to sample from, a mixture population is formed.
+%	By default the proportion in this mixture population is $.5$ of the population adhering to $H_m$ and the remaining $.5$ to $H_{\cancel{m}}$.
+%	
+%	\subsection{Step 2: Choose R and P}
+%	Here the values to consider for the number of replications $R$ and the sample size $P$.
+%	The values should be separated by a space.
+%	
+%	\subsection{Step 3: Simulation details}
+%	Here some simulation details should be selected.
+%	First, the number of posterior samples to compute the Bayes factor should be specified.
+%	By default, this value is $1,000$.
+%	For more accuracy, this can be increased to $10,000$, at the cost of computational speed.
+%	
+%	Second, the size of the simulated P-populations should be specified.
+%	This is by default $1,000$, and can be increased to $10,000$, at the cost of computational speed.
+%	
+%	Third, the number of samples of size $P$ taken from the P-population should be specified.
+%	This is by default $1,000$, and can be decreased for increased speed.
+%		
+%		Finally, a title for this simulation should be specified.
+%		A new folder with this title will be created within the application directory, where the simulation is saved.
+%		
+%		By pressing the button 'Go', the simulation is started. 
+%		A progress bar gives a rough indication of the part of the simulation already performed.
+%		Note that the computation might take a while: as many populations should be created as the product of number of replications considered and P-populations considered.
+%		It is advised to think carefully about which populations to consider in the sensitivity analysis, and which Bayes factor(s) are of interest.
+%		Increasing the number of choices in Bayes factors and in the number of populations can add up in computational time.
+%		
+%		Af
+%		
+%		\subsection{Plot}
+%		The tab \textit{Plot} can be used to view the results of executed simulations (current and past) and the simulations used for the paper.
+%		In this panel, you can select from all simulation folders created in the directory of the application.
+%		When a folder is selected, you can choose which Bayes factor to plot, whether the $95\%$ intervals should be depicted, and whether the ER and the SR should be depicted.
+%		The folder \textit{Datasets} can be selected to view the results shown in the paper.
+%		Finally, the plot can be downloaded using the download button.
+%	
+%	\newpage
+	\section{Analyze own data}
+	\label{sec:2}
+	This section describes each of the steps required to analyze own data in the tab \textit{Analyze own data} within the Shiny Application OneForAll. This item consists of three options from the menu: \textit{Settings and load data}, \textit{Individual Bayes factors}, and \textit{GPBF output}. The first will be discussed in detail, while the other two can be used to view the results.
+	\subsection{Step 1: Data and hypotheses}
+	Step 1 is to select the data file to be used for analysis.
+	You can choose to use the example data from \citeauthor{zedelius11} \citeyear{zedelius11} (as described in the paper \href{https://doi.org/10.3758/s13428-017-0992-5}{One for all or some for all? Evaluting informative hypotheses for multiple N=1 studies} \cite{klaassenBSES}).
+	Alternatively, you can upload your own data file to be analyzed.
+	This file should be a \textit{.txt} with as many rows as persons or cases, and per row the entries for each condition, separated by a space or tab (white space).
+	Each entry in the file should be an integer, describing the number of successes in each condition.
+	The rows and columns should not be numbered or labeled. 
+	SPSS data can be saved as a Tab delimited .dat file (without row and column names), and the .dat extension must be manually changed to .txt .
+	When the file is selected, a preview of the data is visible, together with a description of the number of conditions and the number of participants. 
+	If these numbers are correct, you can continue.
+	If not, the data file was not in the right format. 
+	Common problems are that the first row contains column names (you can just delete this row), or strange symbols in the first entry, which can also be deleted.
+	Next, the number of replications used in the experiment should be given.
+
+	\subsection{Step 2: Number of conditions and hypotheses}
+\label{subsec:constraints}	
+	Step 2 is to define the constraints of the hypotheses considered.
+	Three options are available.
+		Below examples are provided on how to use this option, using the hypotheses specified in Table~\ref{tab:hypotheses}.
+			\begin{table}[b]
+				\caption{Possible specifications for 6 hypotheses.}
+				\label{tab:hypotheses}
+				\begin{tabular}{l l l l l }
+					Hypothesis & & Using $>$ & Using $R$ & Default \\
+					$H_{1}^{i}: \pi_{1}^{i} >  \pi_{2}^{i} >  \pi_{3}^{i} >  \pi_{4}^{i}>  \pi_{5}^{i} >  \pi_{6}^{i}$ && $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+					
+					$H_{2}^{i}: \pi_{1}^{i} + \pi_{2}^{i} >  \pi_{3}^{i} + \pi_{4}^{i}>  \pi_{5}^{i} + \pi_{6}^{i}$ && $\checkmark$ &$\checkmark$ &$\checkmark$\\
+					
+					$H_{3}^{i}: \pi_{1}^{i} + \pi_{2}^{i} + \pi_{3}^{i} > \pi_{4}^{i} + \pi_{5}^{i} + \pi_{6}^{i}$  && x &$\checkmark$ &x\\
+					
+					$H_{4}^{i}:  \pi_{1}^{i} >  \pi_{2}^{i} >  \pi_{3}^{i} >  \pi_{4}^{i}>  \pi_{6}^{i} >  \pi_{5}^{i}$  && $\checkmark$ &$\checkmark$ &$\checkmark$\\
+					
+					$H_{5}^{i}:  \pi_{1}^{i} >  \pi_{3}^{i} >  \pi_{2}^{i} >  \pi_{4}^{i}>  \pi_{6}^{i} >  \pi_{5}^{i}$  && $\checkmark$ &$\checkmark$ &x\\	
+					
+				\end{tabular}
+			\end{table}
+
+	\begin{itemize}
+		\item \textit{Option 1: Using $>$. } This option requires that for each hypothesis you want to consider, you specify each constraint using $>$ and separate constraints with a comma.
+		Each hypothesis is specified on its own line.
+		The parameters of interest are the success probabilities in the experimental conditions.
+		They can be referred to by a number that corresponds to the column number of that condition in the data.
+		Two types of constraints can be specified: a constraint between two parameters (e.g.``1$>$2"), or a constraint between two combinations of two parameters, separated by a $'+'$ (e.g.``1+2$>$3+4"). 
+		Note that one parameter cannot be on both sides of the constraint (e.g. "1+2 $>$ 2+3" is not allowed).
+		Figure~\ref{fig:ineq} specifies all hypotheses from Table~\ref{tab:hypotheses} that can be specified using this option.
+		\item \textit{Option 2: Using constraint matrix.} This options allows the user to specify a constraint matrix for each hypothesis.
+		For more details on a constraint matrix, see \citeauthor{mulder12} \citeyear{mulder12} for example. 
+		The first line should specify how many hypotheses $M$ are specified, and each hypothesis $m = 1,...,M$ should start with a line specifying the number of constraints (rows) in $R_{m}$.
+		Each constraint matrix contains $J+1$ columns, where $J$ is the number of conditions. 
+		The first $J$ columns specify the constraint matrix, and the last additional column should contain the contrast vector $r$.
+		With this option more complex hypotheses can be specified.
+		Figure~\ref{fig:R} shows how $H_{1}^{i}$ and $H_{3}^{i}$ could be specified using $R$, Option 2. 
+		Option 2 is more flexible than Option 1, but as can be seen in Figures~\ref{fig:ineq} and \ref{fig:R}, Option 1 is more straightforward to specify, if the hypotheses allow for this option.
+		\item \textit{Option 3: Default.} This option is only available for an even number of conditions, and specifies automatically three hypotheses: $H_{1}^{i}: \pi_{1}^{i} > \pi_{2}^{i} > ... > \pi_{J}^{i}$, a full ordered hypothesis, where $J\geq4$, $H_{2}^{i}: \pi_{1}^{i} > \pi_{2}^{i} > ... > \pi_{J}^{i}> \pi_{J-1}^{i}$, that only deviates from $H_{1}^{i}$ because the last two parameters are reversed in the ordering, and finally $H_{3}^{i}:\pi_{1}^{i}+ \pi_{2}^{i} > ... > \pi_{J-1}^{i} +\pi_{J}^{i}$, a full ordered hypothesis of each adjoining pair of parameters.
+	\end{itemize}
+	
+	When the constraints are submitted, the third step is to specify which Bayes factors should be computed.
+	The options available are all combinations of the hypotheses specified, and each hypothesis against its complement and the unconstrained hypothesis.
+	By pressing the button `Check constraints' the constraints are checked, and a textbox is returned with the hypothesis as processed by the app. 
+	If something is incorrect here, please re-enter your constraints.
+	
+	\subsection{Step 3: Computation details}
+The number of iterations required for the computation of the Bayes factor. 
+	By default, this value is $10,000$. 
+	Decreasing this value will increase the speed of computation, but particularly for larger number of conditions (say $8$), decrease the precision of the Bayes factor computation.
+	You can enter and adjust the computation seed, for reproducibility of your results.
+	
+	By then pressing the button `Execute analysis' (appears if the constraints are filled in and checked), the computation will start. 
+	A pop-up will appear in the bottom right corner to indicate that the computation is busy, and a notification `Analysis finished' will appear under the button when ready.
+	Then, you can access the other two tabs to view the results
+%\begin{figure}[h]
+%	\caption{Start screen application}
+%	\label{fig:startscreen}
+%	\includegraphics[width = \linewidth]{pictures/startScreen.jpg}
+%\end{figure}
+				\begin{figure}
+					\caption{Option 1: Using $>$}
+					\label{fig:ineq}
+					\includegraphics[]{pictures/option1.jpg}										
+				\end{figure}
+				
+				\begin{figure}
+					\caption{Option 2: Using $R$}
+					\label{fig:R}
+					\includegraphics[]{pictures/option2.jpg}
+				\end{figure}
+
+	
+	
+	
+	\clearpage
+	\newpage
+	\bibliographystyle{apacite}
+	\bibliography{D:/Surfdrive/references}		
+\end{document}
